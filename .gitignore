@@ -1,0 +1,37 @@
+# ssl certs
+*.csr
+*.crt
+*.key
+*.pem
+
+# IDE configs and settings
+.project
+.classpath
+*.iml
+*.idea
+.editorconfig
+
+# MacOS folder settings
+*.DS_Store*
+
+# yarn stuff
+.pnp.*
+.yarn/*
+/.yarn/patches
+/.yarn/plugins
+/.yarn/releases
+/.yarn/sdks
+/.yarn/versions
+/.yarnrc.yml
+
+# code coverage reports
+coverage/
+/stats.json
+
+# deployment stuff
+/dist/_redirects
+/dist/.well-known/*
+/dist/*.js
+/dist/*.png
+/dist/*.mp4
+/dist/*.txt
