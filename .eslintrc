@@ -1,0 +1,24 @@
+{
+  // use babel for parsing
+  "parser": "babel-eslint",
+  "env": {
+    // parse for the browser
+    "browser": true,
+    // with commonjs
+    "node": true
+  },
+  // use an industry standard set of rules
+  "extends": "airbnb",
+  // override some rules
+  "rules": {
+    // disable this rule because it doesn't differentiate between open and closed tags!
+    "react/jsx-closing-bracket-location": 0,
+    // disable this rule because its easier to read multiline props when they are left aligned
+    "react/jsx-indent-props": 0,
+    // not a huge fan of dangling commas just yet
+    "comma-dangle": [
+      2,
+      "never"
+    ]
+  }
+}
