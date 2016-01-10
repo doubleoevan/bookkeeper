@@ -5,21 +5,21 @@ import ReactDOM from 'react-dom';
 import { createTooltips, removeTooltips } from '../helpers/tooltip';
 
 /**
- * TooltipMixin shows and hides tooltips
+ * TooltipMixin applies tooltip helper methods to component lifecycle callbacks.
  */
 export default {
 
-  // show the tooltips
+  // update the tooltips
   componentDidMount() {
     this.showTooltips();
   },
 
-  // show the tooltips
+  // update the tooltips
   componentDidUpdate() {
     this.showTooltips();
   },
 
-  // hide all tooltips
+  // destroy all tooltips
   componentWillUnmount() {
     this.hideTooltips();
   },

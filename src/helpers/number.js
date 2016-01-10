@@ -10,7 +10,7 @@ const pluralize = (number = 0, singular = 'item', plural = 'items') => {
 };
 
 const formatNumber = (number = 0, format = '0,0') => {
-  // add commas and remove decimals from the number display
+  // add commas and remove the decimals from a number display
   return numeral(number).format(format);
 };
 

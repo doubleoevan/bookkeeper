@@ -21,7 +21,7 @@ import { dataTooltipProps } from '../helpers/tooltip';
 import { openModal } from '../helpers/modal';
 
 /**
- * Where shows the likes grouped by location.
+ * Where shows the likes location map view.
  */
 export const Where = React.createClass({
 
@@ -184,7 +184,7 @@ export const Where = React.createClass({
                             <MarkerClusterer title={`Click to see your likes in this area`}
                                              gridSize={60}>
                                 {Object.keys(placePostGroups).map(placeId => {
-                                  // assign post and likes variables from each place
+                                  // assign post and likes variables for each place
                                   const placePosts = placePostGroups[placeId];
                                   const place = placePosts[0].place;
                                   const placeLikeCount = this.sumPostsLikes(placePosts);
@@ -230,7 +230,7 @@ const mapStateToProps = state => {
   };
 };
 
-// return the component wth props attached to the state and actions attached to the store
+// return the component with props attached to the state and actions attached to the store
 export const WhereContainer = connect(
     mapStateToProps,
     actions

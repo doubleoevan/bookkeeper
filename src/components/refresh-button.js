@@ -24,12 +24,15 @@ export const RefreshButton = React.createClass({
   mixins: [PureRenderMixin, TooltipMixin],
 
   render() {
+    // assign variables from the props
+    const { fetchUser } = this.props;
+
     // show the refresh button
     return (
         <div>
           <a {...tooltipProps('Refresh your data', 'left')}
               className="btn-large z-depth-2 waves-effect waves-light"
-              onClick={this.props.fetchUser}>
+              onClick={fetchUser}>
             <i className="material-icons left">refresh</i> Refresh
           </a>
         </div>
@@ -37,7 +40,7 @@ export const RefreshButton = React.createClass({
   }
 });
 
-// return the component wth actions attached to the store
+// return the component with actions attached to the store
 export const RefreshButtonContainer = connect(
     null,
     actions

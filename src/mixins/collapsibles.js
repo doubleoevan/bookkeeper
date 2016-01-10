@@ -5,16 +5,16 @@ import ReactDOM from 'react-dom';
 import { createCollapsibles } from '../helpers/collapsible';
 
 /**
- * CollapsibleMixin shows collapsibles
+ * CollapsibleMixin applies collapsible helper methods to component lifecycle callbacks.
  */
 export default {
 
-  // show the collapsibles
+  // update the collapsibles
   componentDidMount() {
     this.showCollapsibles();
   },
 
-  // show the collapsibles
+  // update the collapsibles
   componentDidUpdate() {
     this.showCollapsibles();
   },

@@ -12,7 +12,7 @@ import { Screenshots } from './screenshots';
 import Preloader from './preloader';
 
 /**
- * Why shows the about view
+ * Why shows the about us view.
  */
 export default React.createClass({
 

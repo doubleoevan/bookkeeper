@@ -20,7 +20,7 @@ import { tooltipProps, dataTooltipProps } from '../helpers/tooltip';
 import { LIMIT_USERS_DISPLAYED } from '../app/config';
 
 /**
- * Who shows the people who liked the most posts.
+ * Who shows the most liked users view.
  */
 export const Who = React.createClass({
 
@@ -124,7 +124,7 @@ export const Who = React.createClass({
   },
 
   render() {
-    // group likes by user and select the groups with the most likes
+    // group likes by user and select the top groups with the most likes
     const { likes } = this.props;
     const userLikeGroups = _.groupBy(likes, 'userId');
     const likeGroups = _.sortBy(userLikeGroups, likeUsers => {
@@ -155,7 +155,7 @@ export const Who = React.createClass({
             <div className="col s12">
               <div className="histogram">
                 {likeGroups.map(likeGroup => {
-                  // assign likes variables from each user
+                  // assign likes variables for each user
                   const user = likeGroup[0];
                   const { userId, name } = user;
                   const likeCount = likeGroup.length;
@@ -212,7 +212,7 @@ const mapStateToProps = state => {
   };
 };
 
-// return the component wth props attached to the state and actions attached to the store
+// return the component with props attached to the state and actions attached to the store
 export const WhoContainer = connect(
     mapStateToProps,
     actions

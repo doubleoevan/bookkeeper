@@ -26,7 +26,7 @@ import { LIMIT_MONTHS_DISPLAYED } from '../app/config';
 const MINIMUM_LIKES_INTERVAL = 10;
 
 /**
- * When shows the likes trended over time.
+ * When shows the likes trended over time view.
  */
 export const When = React.createClass({
 
@@ -57,11 +57,13 @@ export const When = React.createClass({
   },
 
   componentDidMount() {
+    // resize the chart with the window
     this.updateChartWidth();
     window.addEventListener('resize', this.updateChartWidth);
   },
 
   componentDidUpdate() {
+    // resize the chart with the window
     this.updateChartWidth();
   },
 
@@ -169,7 +171,7 @@ export const When = React.createClass({
                 </div>
               </div>
 
-              {/* post item collections */}
+              {/* post like collections */}
               <ul className="collection collapsible"
                   data-collapsible="accordion">
                 {dayPosts.map(post => {
@@ -273,7 +275,7 @@ export const When = React.createClass({
           {/* title */}
           <div className="row">
             <h5 {...dataTooltipProps()} className="chart-title col">
-              Here are your like counts for the last {LIMIT_MONTHS_DISPLAYED} months.
+              Here are your recent like counts.
             </h5>
 
             {/* refresh button */}
@@ -331,6 +333,7 @@ export const When = React.createClass({
 
                   {/* y axis labels and horizontal grid lines */}
                   {yIntervals.map(interval => {
+                    // show a y axis marker and horizontal grid line for each y axis interval
                     return (
                         <g key={interval}>
                           {/* y axis label */}
@@ -351,25 +354,25 @@ export const When = React.createClass({
                     );
                   })}
 
-                  {/* area */}
+                  {/* area fill */}
                   <path className="area"
                         d={areaPath}>
                   </path>
 
-                  {/* line */}
+                  {/* line path */}
                   <path className="line"
                         d={linePath}>
                   </path>
 
                   {/* vertices */}
                   {Object.keys(dayPostGroups).map(day => {
-                    // assign likes variables from each day
+                    // assign like count variables for each day
                     const dayPosts = dayPostGroups[day];
                     const dayLikeCount = this.sumPostsLikes(dayPosts);
                     const dayDisplay = moment.unix(day).format('MMMM D, YYYY');
                     const selectDay = this.selectDay.bind(this, day);
 
-                    // show the vertices
+                    // show the day like count vertex
                     return (
                         <circle {...tooltipProps(`Click to see your ${dayLikeCount} likes on ${dayDisplay}`, 'top')}
                             className="vertex"
@@ -410,7 +413,7 @@ const mapStateToProps = state => {
   };
 };
 
-// return the component wth props attached to the state and actions attached to the store
+// return the component with props attached to the state and actions attached to the store
 export const WhenContainer = connect(
     mapStateToProps,
     actions

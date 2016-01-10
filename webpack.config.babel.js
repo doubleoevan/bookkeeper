@@ -60,7 +60,7 @@ const defaultConfiguration = {
       loader: 'babel',
       include: paths.src
     }, {
-      // load assets with an insert a build hash into url
+      // load assets and insert a build hash into the url
       test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
       loader: 'url-loader?limit=8192',
       include: paths.assets
@@ -98,6 +98,9 @@ if (!TARGET || TARGET === 'start') {
       })
     ],
 
+    // generate source maps for debugging
+    devtool: 'eval-source-map',
+
     // define the dev server
     devServer: {
       contentBase: './build',
@@ -105,10 +108,7 @@ if (!TARGET || TARGET === 'start') {
       port: '3000', // hard code this to match the facebook test app settings
       historyApiFallback: true, // support the history api for routing
       stats: 'errors-only' // only display errors to the console
-    },
-
-    // generate source maps for debugging
-    devtool: 'eval-source-map'
+    }
   });
 }
 

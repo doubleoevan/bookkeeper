@@ -41,7 +41,7 @@ export const LoginButton = React.createClass({
   }
 });
 
-// return the component wth actions attached to the store
+// return the component with actions attached to the store
 export const LoginButtonContainer = connect(
     null,
     actions

@@ -76,7 +76,7 @@ export const Header = React.createClass({
   }
 });
 
-// return the component wth actions attached to the store
+// return the component with actions attached to the store
 export const HeaderContainer = connect(
     null,
     actions

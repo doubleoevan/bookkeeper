@@ -56,7 +56,7 @@ const mapStateToProps = state => {
   };
 };
 
-// return the component wth props attached to the state and actions attached to the store
+// return the component with props attached to the state and actions attached to the store
 export const MenuItemContainer = connect(
     mapStateToProps,
     actions

@@ -20,7 +20,7 @@ import { tooltipProps, dataTooltipProps } from '../helpers/tooltip';
 import { LIMIT_POSTS_DISPLAYED } from '../app/config';
 
 /**
- * What shows the most liked posts.
+ * What shows the most liked posts view.
  */
 export const What = React.createClass({
 
@@ -112,7 +112,7 @@ export const What = React.createClass({
   },
 
   render() {
-    // group likes by post and select the groups with the most likes
+    // group likes by post and select the top groups with the most likes
     const { likes, posts } = this.props;
     const postLikeGroups = _.groupBy(likes, 'postId');
     const likeGroups = _.sortBy(postLikeGroups, postLikes => {
@@ -143,7 +143,7 @@ export const What = React.createClass({
             <div className="col s12">
               <div className="histogram">
                 {likeGroups.map(likeGroup => {
-                  // assign likes variables from each post
+                  // assign likes variables for each post
                   const likeCount = likeGroup.length;
                   const width = (likeCount / highestLikeCount) * 100;
                   const { postId } = likeGroup[0];
@@ -201,7 +201,7 @@ const mapStateToProps = state => {
   };
 };
 
-// return the component wth props attached to the state and actions attached to the store
+// return the component with props attached to the state and actions attached to the store
 export const WhatContainer = connect(
     mapStateToProps,
     actions

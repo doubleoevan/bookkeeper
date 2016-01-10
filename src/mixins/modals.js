@@ -5,16 +5,16 @@ import ReactDOM from 'react-dom';
 import { createModals } from '../helpers/modal';
 
 /**
- * ModalMixin shows modals
+ * ModalMixin applies modals helper methods to component lifecycle callbacks.
  */
 export default {
 
-  // show the modals
+  // update the modals
   componentDidMount() {
     this.showModals();
   },
 
-  // show the modals
+  // update the modals
   componentDidUpdate() {
     this.showModals();
   },

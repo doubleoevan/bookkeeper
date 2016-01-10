@@ -13,12 +13,11 @@ import { IndexLink } from 'react-router';
 import { tooltipProps } from '../helpers/tooltip';
 
 /**
- * Navigation shows the global navigation menu.
+ * SideMenu shows the global navigation menu.
  */
 export default React.createClass({
 
   displayName: 'SideMenu',
-
 
   propTypes: {
     className: PropTypes.string.isRequired,
