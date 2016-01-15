@@ -9,7 +9,9 @@
     "syntax-object-rest-spread",
     "transform-class-properties",
     "transform-decorators",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-react-constant-elements",
+    "transform-react-inline-elements"
   ],
   "env": {
     "start": {
