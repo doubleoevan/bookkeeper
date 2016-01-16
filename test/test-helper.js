@@ -8,7 +8,7 @@ const document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 const window = document.defaultView;
 
 // mock jquery for now...
-window.$ = () => {
+window.$ = function jquery() {
 };
 
 // set browser elements on the node.js global object
