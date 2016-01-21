@@ -120,7 +120,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
     module: {
       loaders: [{
         test: /\.styl$/,
-        loader: ExtractTextPlugin.extract('css-loader!autoprefixer-loader?browsers=last 2 version!stylus-loader'),
+        loader: ExtractTextPlugin.extract('css-loader!postcss-loader?browsers=last 2 version!stylus-loader'),
         include: paths.src
       }]
     },

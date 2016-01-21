@@ -2,7 +2,7 @@
 
 [![Build Status](http://img.shields.io/travis/doubleoevan/bookkeeper/master.svg?style=flat-square)](https://travis-ci.org/doubleoevan/bookkeeper)
 
-Track your Facebook posts with <a href="http://bookkeeper.surge.sh/" target="_blank">Bookkeeper</a>
+Track your Facebook posts with <a href="http://mybookkeeper.io/" target="_blank">Bookkeeper</a>
 
 ## Installation
 
@@ -27,7 +27,7 @@ Here is what you should see:
 - [x] Set NODE_ENV = production during build for performance
 - [ ] Remove Immutable.toJS from views for object sharing
 - [ ] Use lodash uniqueId inside components to create modal ids
-- [ ] Integrate react-virtualized for performance then update the fetch limits to 100
+- [x] Integrate react-virtualized for performance then update the fetch limits to 100
 - [ ] Convert createClass to components for performance
 - [ ] Load jquery, materialize, and roboto fonts through webpack for performance and offline development
 - [ ] Prerender static html to the template with ReactDOMServer.renderToStaticMarkup for performance and SEO
@@ -35,4 +35,8 @@ Here is what you should see:
 - [ ] Add and co-locate mocha tests with components and modules
 - [ ] Implement pagination for parsing "likes" responses
 - [ ] Extend the platform to support "shares"
+- [x] Embed Google Ads
+- [ ] Redirect to https for SEO
 - [ ] Extend the platform to support twitter "likes" and "shares"
+- [ ] Launch a React Native version for ios
+- [ ] Launch a React Native version for android
