@@ -86,8 +86,7 @@ if (!TARGET || TARGET === 'start') {
       }, {
         // inline the css into javascript for hot reloading
         test: /\.css$/,
-        loader: 'style-loader!css-loader',
-        include: paths.app
+        loader: 'style-loader!css-loader'
       }]
     },
 
@@ -122,6 +121,9 @@ if (TARGET === 'build' || TARGET === 'stats') {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('css-loader!postcss-loader?browsers=last 2 version!stylus-loader'),
         include: paths.src
+      }, {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('css-loader')
       }]
     },
 

@@ -32,7 +32,8 @@ export const Footer = React.createClass({
     if (currentPath !== '/privacy') {
       return (
           <div>
-            <Link to="/privacy">privacy policy</Link>
+            <Link {...tooltipProps('The world\'s shortest privacy policy', 'top')}
+                to="/privacy">privacy policy</Link>
           </div>
       );
     }

@@ -12,6 +12,7 @@ import { FooterContainer } from './footer';
 import Preloader from '../components/preloader';
 import Login from '../components/login';
 import FastClick from 'react-fastclick-alt';
+import ReactTooltip from 'react-tooltip';
 
 // functions
 import { connect } from 'react-redux';
@@ -91,6 +92,9 @@ export const Layout = React.createClass({
           <footer className="page-footer">
             <FooterContainer/>
           </footer>
+
+          {/* tooltips */}
+          <ReactTooltip/>
         </FastClick>
     );
   }

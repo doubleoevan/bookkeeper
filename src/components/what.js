@@ -8,6 +8,7 @@ import TooltipMixin from '../mixins/tooltips';
 import ModalMixin from '../mixins/modals';
 
 // components
+import VisibleItems from './visible-items';
 import LikeItem from './like-item';
 import { RefreshButtonContainer } from './refresh-button';
 
@@ -64,6 +65,12 @@ export const What = React.createClass({
       const likes = postLikeGroups[postId];
       const likeCount = likes.length;
 
+      // set the like items
+      const likeItems = likes.map(like => {
+        const { userId } = like;
+        return <LikeItem key={userId} like={like}/>;
+      });
+
       // show the selected post modal
       return (
           <div className="likes-modal modal bottom-sheet" id="post-modal">
@@ -91,12 +98,7 @@ export const What = React.createClass({
               </div>
 
               {/* post likes collection */}
-              <div className="collection card">
-                {likes.map(like => {
-                  const { userId } = like;
-                  return <LikeItem key={userId} like={like}/>;
-                })}
-              </div>
+              <VisibleItems className="collection card" items={likeItems}/>
             </div>
           </div>
       );

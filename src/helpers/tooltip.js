@@ -8,28 +8,7 @@ const TOOLTIP_DATA = `This data is collected from
                       your ${LIMIT_PHOTOS_FETCHED} most recent photos,
                       and your ${LIMIT_VIDEOS_FETCHED} most recent videos`.replace(/\s+/g, ' ');
 
-const removeTooltips = element => {
-  // hide all jquery tooltips
-  const $element = window.$(element);
-  if ($element && $element.length) {
-    const $tooltips = $element.find('[data-tooltip]');
-    if ($tooltips && $tooltips.length) {
-      $tooltips.tooltip('remove');
-      return $tooltips;
-    }
-  }
-};
-
-const createTooltips = element => {
-  // initialize all jquery tooltips
-  const $tooltips = removeTooltips(element);
-  if ($tooltips && $tooltips.length) {
-    $tooltips.tooltip();
-    return $tooltips;
-  }
-};
-
-const tooltipProps = (tooltip = '', position = 'right', delay = '50', classes = 'custom-tooltip') => {
+const tooltipProps = (tooltip = '', place = 'right', classes = 'custom-tooltip', border = true) => {
   // ignore an empty tooltip
   if (!tooltip.length) {
     return {};
@@ -43,17 +22,15 @@ const tooltipProps = (tooltip = '', position = 'right', delay = '50', classes = 
 
   // return the tooltip props
   return {
-    'custom-css': classes,
-    'data-delay': delay,
-    'data-position': position,
-    'data-tooltip': tooltipProp
+    'data-class': classes,
+    'data-place': place,
+    'data-tip': tooltipProp,
+    'data-border': border
   };
 };
 
 // export tooltip helper functions
 module.exports = {
-  createTooltips,
-  removeTooltips,
   tooltipProps,
   dataTooltipProps: tooltipProps.bind(this, TOOLTIP_DATA)
 };

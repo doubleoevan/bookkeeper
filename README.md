@@ -23,6 +23,7 @@ Here is what you should see:
 
 ## Todo
 
+- [x] Extend the platform to support status posts
 - [x] Replace autoprefixer-loader which is deprecated with postcss-loader
 - [x] Set NODE_ENV = production during build for performance
 - [ ] Remove Immutable.toJS from views for object sharing

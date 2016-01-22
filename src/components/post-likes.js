@@ -6,6 +6,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TooltipMixin from '../mixins/tooltips';
 
 // components
+import VisibleItems from './visible-items';
 import LikeItem from '../components/like-item';
 
 // functions
@@ -51,6 +52,12 @@ export default React.createClass({
     const { post, likes, userLink } = this.props;
     const { title = 'your post', link = userLink, picture } = post;
 
+    // set the like items
+    const likeItems = likes.map(like => {
+      const { userId } = like;
+      return <LikeItem key={userId} like={like}/>;
+    });
+
     // show the post and likes collection
     return (
         <li>
@@ -77,10 +84,7 @@ export default React.createClass({
 
           {/* likes collection */}
           <div className="collapsible-body">
-            {likes.map(like => {
-              const { userId } = like;
-              return <LikeItem key={userId} like={like}/>;
-            })}
+            <VisibleItems items={likeItems}/>
           </div>
         </li>
     );

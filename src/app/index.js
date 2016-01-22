@@ -24,6 +24,7 @@ import reducers from './reducers';
 
 // styles
 import './main.styl';
+import 'react-virtualized/styles.css';
 
 // initialize the app store
 const createStoreWithMiddleware = applyMiddleware(

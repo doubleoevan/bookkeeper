@@ -93,6 +93,13 @@ export const Where = React.createClass({
         return secondPostLikes.length - firstPostLikes.length;
       });
 
+      // set the place post likes
+      const placePostLikes = placePosts.map(post => {
+        const { postId } = post;
+        const postLikes = this.toPostLikes(post);
+        return <PostLikes key={postId} post={post} likes={postLikes} userLink={userLink}/>;
+      });
+
       // show the selected place modal
       return (
           <div className="likes-modal modal bottom-sheet" id="place-modal">
@@ -116,11 +123,7 @@ export const Where = React.createClass({
               {/* post likes collapsibles */}
               <ul className="collection collapsible"
                   data-collapsible="accordion">
-                {placePosts.map(post => {
-                  const { postId } = post;
-                  const postLikes = this.toPostLikes(post);
-                  return <PostLikes key={postId} post={post} likes={postLikes} userLink={userLink}/>;
-                })}
+                {placePostLikes}
               </ul>
             </div>
           </div>

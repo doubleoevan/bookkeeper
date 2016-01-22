@@ -151,6 +151,13 @@ export const When = React.createClass({
         return secondPostLikes.length - firstPostLikes.length;
       });
 
+      // set the day post likes
+      const dayPostLikes = dayPosts.map(post => {
+        const { postId } = post;
+        const postLikes = this.toPostLikes(post);
+        return <PostLikes key={postId} post={post} likes={postLikes} userLink={userLink}/>;
+      });
+
       // show the selected day modal
       return (
           <div className="likes-modal modal bottom-sheet" id="day-modal">
@@ -174,11 +181,7 @@ export const When = React.createClass({
               {/* post like collections */}
               <ul className="collection collapsible"
                   data-collapsible="accordion">
-                {dayPosts.map(post => {
-                  const { postId } = post;
-                  const postLikes = this.toPostLikes(post);
-                  return <PostLikes key={postId} post={post} likes={postLikes} userLink={userLink}/>;
-                })}
+                {dayPostLikes}
               </ul>
             </div>
           </div>
