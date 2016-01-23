@@ -23,7 +23,7 @@ export default React.createClass({
   render() {
     // show the screencast
     return (
-        <div {...tooltipProps('Click the play button to watch a demo of Bookkeeper')}
+        <div {...tooltipProps('Click the play button to watch a demo')}
             className="screencast card-panel z-depth-2">
           <video src={SCREENCAST_URL}
                  poster={SCREENCAST_IMAGE_URL}

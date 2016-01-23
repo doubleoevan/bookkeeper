@@ -38,7 +38,7 @@ module.exports = {
   apiDomain: 'https://graph.facebook.com',
 
   // media constants
-  SCREENCAST_URL: 'https://video.fsnc1-1.fna.fbcdn.net/hvideo-xtf1/v/t43.1792-2/12500075_1239316996084526_1345139756_n.mp4?efg=eyJybHIiOjE1MDAsInJsYSI6MTQzNSwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=328&oh=c11a1e26100496659a3c7e4ad906282c&oe=56A3D805',
+  SCREENCAST_URL: 'https://video.fsnc1-1.fna.fbcdn.net/hvideo-xtf1/v/t43.1792-2/12500075_1239316996084526_1345139756_n.mp4?efg=eyJybHIiOjE1MDAsInJsYSI6MTQzNSwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=328&oh=3f78ad10864979d26732e11f982d4a9b&oe=56A464A5',
   SCREENCAST_IMAGE_URL: 'https://scontent.fsnc1-1.fna.fbcdn.net/hvthumb-xft1/v/t15.0-10/12497069_561129304049855_1553818616_n.jpg?oh=e042c3926b7991dee03cdee1d839806c&oe=56FBFB1C',
   CONTACT_EMAIL: 'bookkeeper.contact@gmail.com',
 

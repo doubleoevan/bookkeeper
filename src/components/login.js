@@ -27,8 +27,8 @@ export default React.createClass({
               {/* login message */}
               <h5>Think About It</h5>
               <p className="caption">
-                Sure they like you, but do they <i>like</i> like you?<br/>
-                Let's find out...
+                They like you, but do they <i>like</i> like you?<br/>
+                Log in to find out...
               </p>
 
               {/* login button */}
