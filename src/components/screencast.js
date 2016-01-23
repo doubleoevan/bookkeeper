@@ -25,7 +25,7 @@ export default React.createClass({
     return (
         <div {...tooltipProps('Watch a demo of Bookkeeper in action')}
             className="screencast card-panel z-depth-2">
-          <video src={SCREENCAST_URL} controls>
+          <video src={SCREENCAST_URL} preload="metadata" controls>
             Your browser does not support the <code>video</code> element.
           </video>
         </div>
