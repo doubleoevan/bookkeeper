@@ -30,7 +30,7 @@ export default React.createClass({
               <div className="left">
                 <h5>How Come?</h5>
                 <p className="caption">
-                  Because we like you.<br/>
+                  Because people like you.<br/>
                   And you deserve to know it!
                 </p>
 
