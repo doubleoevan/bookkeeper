@@ -39,6 +39,7 @@ module.exports = {
 
   // media constants
   SCREENCAST_URL: 'https://video.fsnc1-1.fna.fbcdn.net/hvideo-xtf1/v/t43.1792-2/12500075_1239316996084526_1345139756_n.mp4?efg=eyJybHIiOjE1MDAsInJsYSI6MTQzNSwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=328&oh=c11a1e26100496659a3c7e4ad906282c&oe=56A3D805',
+  CONTACT_EMAIL: 'bookkeeper.contact@gmail.com',
 
   // local storage keys
   storageKeys,

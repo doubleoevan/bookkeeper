@@ -13,6 +13,9 @@ import { tooltipProps } from '../helpers/tooltip';
 import { connect } from 'react-redux';
 import * as actions from '../app/actions';
 
+// constants
+import { CONTACT_EMAIL } from '../app/config';
+
 /**
  * Footer shows the global footer.
  */
@@ -27,16 +30,32 @@ export const Footer = React.createClass({
   mixins: [PureRenderMixin, TooltipMixin],
 
   renderPrivacyLink() {
+    // set the contact link html
+    const contactLink = (
+        <a {...tooltipProps('Questions? Concerns? Your feedback is much appreciated!', 'top')}
+            href={`mailto:${CONTACT_EMAIL}?subject=A message about Bookkeeper`}>
+          Contact
+        </a>
+    );
+
     // do not show the privacy link on the privacy page
     const { currentPath } = this.props;
-    if (currentPath !== '/privacy') {
+    if (currentPath === '/privacy') {
       return (
           <div>
-            <Link {...tooltipProps('The world\'s shortest privacy policy', 'top')}
-                to="/privacy">privacy policy</Link>
+            {contactLink}
           </div>
       );
     }
+    // show the privacy and contact links by default
+    return (
+        <div>
+          <Link {...tooltipProps('The world\'s shortest privacy policy', 'top')}
+              to="/privacy">Privacy</Link>
+          {' | '}
+          {contactLink}
+        </div>
+    );
   },
 
   render() {
