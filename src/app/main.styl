@@ -46,6 +46,11 @@ $blue-shadow = 0px 0px 30px 5px rgba(100, 149, 237, 0.5);
     font-weight: bold;
   }
 
+  .clear {
+    display: block;
+    clear: both;
+  }
+
   .custom-tooltip {
     z-index: 4242;
   }
@@ -275,6 +280,25 @@ $blue-shadow = 0px 0px 30px 5px rgba(100, 149, 237, 0.5);
     .caption {
       font-size: 1.25rem;
       font-weight: 300;
+    }
+
+    .login-form {
+      margin-bottom: 0;
+    }
+
+    .about-message {
+      margin-bottom: 0;
+    }
+
+    .screencast {
+      &:hover {
+        box-shadow: $blue-shadow;
+      }
+
+      video {
+        width: 100%;
+        border: 1px solid $dark-blue;
+      }
     }
 
     .screenshots {
