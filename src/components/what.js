@@ -99,6 +99,17 @@ export const What = React.createClass({
 
               {/* post likes collection */}
               <VisibleItems className="collection card" items={likeItems}/>
+
+              {/* post footer */}
+              <div className="row">
+                <div className="close-button col s12">
+                  <div className="right">
+                    <a className="btn-large z-depth-2 waves-effect waves-light modal-action modal-close">
+                      Close
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
       );

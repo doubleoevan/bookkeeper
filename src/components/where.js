@@ -125,6 +125,17 @@ export const Where = React.createClass({
                   data-collapsible="accordion">
                 {placePostLikes}
               </ul>
+
+              {/* place footer */}
+              <div className="row">
+                <div className="close-button col s12">
+                  <div className="right">
+                    <a className="btn-large z-depth-2 waves-effect waves-light modal-action modal-close">
+                      Close
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
       );

@@ -111,6 +111,17 @@ export const Who = React.createClass({
 
               {/* user likes collection */}
               <VisibleItems className="collection card" items={postItems}/>
+
+              {/* user footer */}
+              <div className="row">
+                <div className="close-button col s12">
+                  <div className="right">
+                    <a className="btn-large z-depth-2 waves-effect waves-light modal-action modal-close">
+                      Close
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
       );
