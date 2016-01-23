@@ -23,8 +23,9 @@ export default React.createClass({
     return (
         <div>
           <div className="login-form row valign-wrapper">
-            {/* login form */}
             <div className="col s6 valign">
+              {/* login message */}
+              <h5>Think About It</h5>
               <p className="caption">
                 Sure they like you, but do they <i>like</i> like you?<br/>
                 Let's find out...

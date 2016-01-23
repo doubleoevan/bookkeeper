@@ -27,26 +27,24 @@ export default React.createClass({
           <div className="about-message row valign-wrapper">
             <div className="col s6 valign">
               {/* about message */}
-              <div className="left">
-                <h5>How Come?</h5>
-                <p className="caption">
-                  Because people like you.<br/>
-                  And you deserve to know it!
-                </p>
+              <h5>How Come?</h5>
+              <p className="caption">
+                Because people like you.<br/>
+                And you deserve to know it!
+              </p>
 
-                {/* loading display */}
-                <LoadingContainer>
-                  <Preloader/>
-                </LoadingContainer>
+              {/* loading display */}
+              <LoadingContainer>
+                <Preloader/>
+              </LoadingContainer>
 
-                {/* loaded display */}
-                <LoadedContainer>
-                  {/* login button */}
-                  <LoggedOutContainer>
-                    <LoginButtonContainer/>
-                  </LoggedOutContainer>
-                </LoadedContainer>
-              </div>
+              {/* loaded display */}
+              <LoadedContainer>
+                {/* login button */}
+                <LoggedOutContainer>
+                  <LoginButtonContainer/>
+                </LoggedOutContainer>
+              </LoadedContainer>
             </div>
 
             {/* screencast */}
