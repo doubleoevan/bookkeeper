@@ -8,6 +8,7 @@ import TooltipMixin from '../mixins/tooltips';
 // components
 import { MenuItemContainer } from './menu-item';
 import { IndexLink } from 'react-router';
+import Advertisement from './advertisement';
 
 // functions
 import { tooltipProps } from '../helpers/tooltip';
@@ -37,12 +38,15 @@ export default React.createClass({
     // show the side menu
     return (
         <ul { ...this.props }>
+          {/* logo */}
           <li className="logo">
             <IndexLink {...tooltipProps('Track your Facebook posts with Bookkeeper')}
                 className="brand-logo center" to="/">
               <i className="navigation-icon material-icons medium">thumb_uptrending_up</i>
             </IndexLink>
           </li>
+
+          {/* menu items */}
           <MenuItemContainer icon="person_outline" key="who" path="/who" text="Who?"
                              tooltip="See who liked your posts"/>
           <MenuItemContainer icon="message" key="what" path="/what" text="What?"
@@ -53,6 +57,11 @@ export default React.createClass({
                              tooltip="See where your posts were liked"/>
           <MenuItemContainer icon="info_outline" key="why" path="/why" text="Why?"
                              tooltip="Find out about Bookkeeper"/>
+
+          {/* advertisement */}
+          <li className="ad-item">
+            <Advertisement className="hide-on-med-and-down"/>
+          </li>
         </ul>
     );
   }
