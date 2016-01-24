@@ -14,7 +14,7 @@
     "build": "webpack",
     "stats": "webpack --profile --json > stats.json",
     "predeploy": "npm run build",
-    "deploy": "surge -p build -d bookkeeper.surge.sh"
+    "deploy": "surge -p build -d mybookkeeper.io"
   },
   "babel": ".babelrc",
   "jscsConfig": ".eslintrc",

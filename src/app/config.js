@@ -10,7 +10,7 @@ const config = {
   },
 
   // production configuration constants
-  'bookkeeper.surge.sh': {
+  'mybookkeeper.io': {
     clientId: '1542610236055559'
   }
 };
