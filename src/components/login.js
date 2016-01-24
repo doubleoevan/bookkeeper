@@ -23,11 +23,12 @@ export default React.createClass({
     return (
         <div>
           <div className="login-form row valign-wrapper">
-            <div className="col s6 valign">
+            <div className="col s6 valign center">
               {/* login message */}
               <h5>Think About It</h5>
               <p className="caption">
-                They like you, but do they <i>like</i> like you?<br/>
+                They like you.<br/>
+                But do they <i>like</i> like you?<br/>
                 Log in to find out...
               </p>
 
