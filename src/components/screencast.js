@@ -8,8 +8,11 @@ import TooltipMixin from '../mixins/tooltips';
 // functions
 import { tooltipProps } from '../helpers/tooltip';
 
+// assets
+import screencastSrc from '../../assets/screencast.mp4';
+
 // constants
-import { SCREENCAST_URL, SCREENCAST_IMAGE_URL } from '../app/config';
+import { SCREENCAST_IMAGE_URL } from '../app/config';
 
 /**
  * Screencast shows the demo video for the app.
@@ -25,7 +28,7 @@ export default React.createClass({
     return (
         <div {...tooltipProps('Click the play button to watch a demo')}
             className="screencast card-panel z-depth-2">
-          <video src={SCREENCAST_URL}
+          <video src={screencastSrc}
                  poster={SCREENCAST_IMAGE_URL}
                  preload="metadata"
                  controls>

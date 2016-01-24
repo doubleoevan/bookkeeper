@@ -64,6 +64,11 @@ const defaultConfiguration = {
       test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
       loader: 'url-loader?limit=8192',
       include: paths.assets
+    }, {
+      // load assets and insert a build hash into the url
+      test: /\.(mp3|mp4)$/,
+      loader: 'file-loader',
+      include: paths.assets
     }]
   },
 
