@@ -60,13 +60,8 @@ const defaultConfiguration = {
       loader: 'babel',
       include: paths.src
     }, {
-      // load assets and insert a build hash into the url
-      test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
-      loader: 'url-loader?limit=8192',
-      include: paths.assets
-    }, {
-      // load assets and insert a build hash into the url
-      test: /\.(mp3|mp4)$/,
+      // load local assets and insert a build hash into the filename
+      test: /\.(png|jpg|svg|eot|ttf|woff|woff2|mp3|mp4)$/,
       loader: 'file-loader',
       include: paths.assets
     }]
@@ -94,6 +89,13 @@ if (!TARGET || TARGET === 'start') {
         loader: 'style-loader!css-loader'
       }]
     },
+
+    plugins: [
+      // set the environment for development config constants
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('development')
+      })
+    ],
 
     // add or remove vendor prefixes from css rules
     postcss: [
@@ -139,7 +141,8 @@ if (TARGET === 'build' || TARGET === 'stats') {
       // output the extracted css to a separate file
       new ExtractTextPlugin('[name].[hash].css'),
 
-      // shrink the react library size by removing type checking on production
+      // set the environment for production config constants
+      // and shrink the react library size by removing type checking for production
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),

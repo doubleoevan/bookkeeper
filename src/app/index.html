@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Bookkeeper - An app to track your Facebook posts</title>
+    <meta name="description" content="Use Bookkeeper to measure the performance of your posts on social media."/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" rel="stylesheet"/>
 </head>
 <body>
-<div id="app">{%= o.htmlWebpackPlugin.options.content || '' %}</div>
+<div id="app">{% print(o.htmlWebpackPlugin.options.content || '', true); %}</div>
 
 <!-- external scripts -->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

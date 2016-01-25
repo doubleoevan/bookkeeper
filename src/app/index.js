@@ -49,7 +49,7 @@ const requireLogin = isLoginRequired => {
   store.dispatch(setLoginRequired(isLoginRequired));
 };
 
-// define the app router
+// wrap the app router in a redux store provider
 const App = (
     <Provider store={store}>
       <Router history={history}>
@@ -67,6 +67,6 @@ const App = (
     </Provider>
 );
 
-// wrap the app router in a redux store provider and render it to the dom
-ReactDOM.render(<Provider store={store}>{App}</Provider>, document.getElementById('app'));
+// render the app to the dom and export it for static rendering
+ReactDOM.render(App, document.getElementById('app'));
 export default App;

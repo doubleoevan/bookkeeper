@@ -9,10 +9,8 @@ import TooltipMixin from '../mixins/tooltips';
 import { tooltipProps } from '../helpers/tooltip';
 
 // assets
-import screencastSrc from '../../assets/screencast.mp4';
-
-// constants
-import { SCREENCAST_IMAGE_URL } from '../app/config';
+import videoSrc from '../../assets/screencast.mp4';
+import thumbnailSrc from '../../assets/screencast.jpg';
 
 /**
  * Screencast shows the demo video for the app.
@@ -28,8 +26,8 @@ export default React.createClass({
     return (
         <div {...tooltipProps('Click the play button to watch a demo')}
             className="screencast card-panel z-depth-2">
-          <video src={screencastSrc}
-                 poster={SCREENCAST_IMAGE_URL}
+          <video src={videoSrc}
+                 poster={thumbnailSrc}
                  preload="metadata"
                  controls>
             Your browser does not support the <code>video</code> element.

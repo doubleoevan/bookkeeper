@@ -71,11 +71,13 @@ export const When = React.createClass({
 
   updateChartWidth() {
     // update the width of the chart to render
-    const chartNode = ReactDOM.findDOMNode(this.refs.chart);
-    const chartWidth = parseInt(d3.select(chartNode).style('width'), 10);
-    this.setState({
-      chartWidth
-    });
+    const chart = ReactDOM.findDOMNode(this.refs.chart);
+    if (chart) {
+      const chartWidth = chart.offsetWidth;
+      this.setState({
+        chartWidth
+      });
+    }
   },
 
   sumPostsLikes(posts) {

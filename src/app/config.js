@@ -5,16 +5,17 @@ import keyMirror from 'keymirror';
 const config = {
 
   // dev configuration constants
-  'localhost': {
+  'development': {
     clientId: '1542610659388850'
   },
 
   // production configuration constants
-  'mybookkeeper.io': {
+  'production': {
     clientId: '1542610236055559'
   }
 };
-const domainConfig = config[window.location.hostname] || {};
+const environment = process.env.NODE_ENV || 'development';
+const domainConfig = config[environment] || {};
 
 // define local storage keys
 const storageKeys = {
@@ -37,8 +38,7 @@ module.exports = {
   apiVersion: 'v2.5',
   apiDomain: 'https://graph.facebook.com',
 
-  // media constants
-  SCREENCAST_IMAGE_URL: 'https://scontent.fsnc1-1.fna.fbcdn.net/hvthumb-xft1/v/t15.0-10/12497069_561129304049855_1553818616_n.jpg?oh=e042c3926b7991dee03cdee1d839806c&oe=56FBFB1C',
+  // support constants
   CONTACT_EMAIL: 'bookkeeper.contact@gmail.com',
 
   // local storage keys
