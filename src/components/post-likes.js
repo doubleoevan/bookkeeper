@@ -67,7 +67,7 @@ export default React.createClass({
               <div className="col s11">
                 {this.renderPostPicture(picture)}
                 <h5 className="truncate">{likes.length} people liked {' '}
-                  <a {...tooltipProps(`Click to open ${title} on Facebook`, 'top')}
+                  <a {...tooltipProps(`Click to open ${title}`, 'top')}
                       href={link}
                       target="_blank">
                     {title} <span className="material-icons">launch</span>

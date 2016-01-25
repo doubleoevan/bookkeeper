@@ -81,7 +81,7 @@ export const What = React.createClass({
                   {this.renderPostPicture(picture, 'header-icon left')}
                   <h5 className="truncate">
                     Here are the {likeCount} people who liked {' '}
-                    <a {...tooltipProps(`Click to open ${title} on Facebook`, 'top')}
+                    <a {...tooltipProps(`Click to open ${title}`, 'top')}
                         href={link}
                         target="_blank">
                       {title} <i className="material-icons tiny">launch</i>
@@ -142,7 +142,7 @@ export const What = React.createClass({
           {/* title */}
           <div className="row">
             <h5 {...dataTooltipProps()} className="chart-title col">
-              Here are your {LIMIT_POSTS_DISPLAYED} most liked posts.
+              Here are your {LIMIT_POSTS_DISPLAYED} most liked recent posts.
             </h5>
 
             {/* refresh button */}

@@ -177,7 +177,7 @@ export const Where = React.createClass({
           {/* title */}
           <div className="row">
             <h5 {...dataTooltipProps()} className="chart-title col">
-              Here is where your posts were liked.
+              Here is where your recent posts were liked.
             </h5>
             <div className="col right">
               <RefreshButtonContainer/>

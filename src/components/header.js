@@ -55,7 +55,7 @@ export const Header = React.createClass({
 
                 {/* app title */}
                 <h1 className="header center-on-med-and-down">
-                  <IndexLink {...tooltipProps('Track your Facebook posts with Bookkeeper')} to="/">
+                  <IndexLink {...tooltipProps('Track your Facebook posts with Bookkeeper', 'right')} to="/">
                     Bookkeeper
                   </IndexLink>
                 </h1>

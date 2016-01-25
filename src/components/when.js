@@ -289,7 +289,7 @@ export const When = React.createClass({
           {/* title */}
           <div className="row">
             <h5 {...dataTooltipProps()} className="chart-title col">
-              Here are your recent like counts.
+              Here are your most recent like counts.
             </h5>
 
             {/* refresh button */}

@@ -41,7 +41,7 @@ export default React.createClass({
 
     // show the post item
     return (
-        <a {...tooltipProps(`Click to open ${title} on Facebook`, 'top')}
+        <a {...tooltipProps(`Click to open ${title}`, 'top')}
             className="collection-item"
             href={link}
             target="_blank">

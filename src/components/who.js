@@ -154,7 +154,7 @@ export const Who = React.createClass({
           <div className="row">
             {/* title */}
             <h5 {...dataTooltipProps()} className="chart-title col">
-              Here are the {LIMIT_USERS_DISPLAYED} people who liked your posts the most.
+              Here are the {LIMIT_USERS_DISPLAYED} people who liked your recent posts the most.
             </h5>
 
             {/* refresh button */}
