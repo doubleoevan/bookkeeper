@@ -13,11 +13,13 @@ import {
     apiVersion,
     storageKeys,
     postTypes,
+    LIMIT_LIKES_FETCHED,
     LIMIT_UPDATES_FETCHED,
     LIMIT_PHOTOS_FETCHED,
     LIMIT_VIDEOS_FETCHED
 } from './config';
 const API_URL = `${apiDomain}/${apiVersion}`;
+const RESPONSE_BAD_REQUEST = 400;
 
 // define action type constants
 export const actionTypes = keyMirror({
@@ -105,8 +107,7 @@ const logOut = createAction(actionTypes.LOG_OUT, () => {
 
 const fetchUser = () => {
   // log out immediately if there is no user token
-  const localStorage = window.localStorage;
-  const userToken = localStorage.getItem(storageKeys.USER_TOKEN);
+  const userToken = getUserToken();
   if (!userToken) {
     return logOut();
   }
@@ -116,16 +117,20 @@ const fetchUser = () => {
     dispatch(setLoading(true));
 
     // request the user data
-    const userUrl = `${API_URL}/me?access_token=${userToken}&fields=id,name,picture,link,posts.limit(${LIMIT_UPDATES_FETCHED}),photos.limit(${LIMIT_PHOTOS_FETCHED}).type(uploaded),videos.limit(${LIMIT_VIDEOS_FETCHED}).type(uploaded)`;
+    const { TYPE_UPDATE, TYPE_PHOTO, TYPE_VIDEO } = postTypes;
+    const updatesField = toEntitiesField(TYPE_UPDATE);
+    const photosField = toEntitiesField(TYPE_PHOTO);
+    const videosField = toEntitiesField(TYPE_VIDEO);
+    const userUrl = `${API_URL}/me?access_token=${userToken}&fields=id,name,picture,link,${updatesField},${photosField},${videosField}`;
     return fetch(userUrl).then(userResponse => {
       // log out immediately if the user token is no longer valid
-      if (userResponse.status >= 400) {
+      if (userResponse.status >= RESPONSE_BAD_REQUEST) {
         return dispatch(logOut());
       }
 
       // normalize the user response data
       return userResponse.json().then(responseData => {
-        const updateSchema = new Schema('posts');
+        const updateSchema = new Schema('updates');
         const photoSchema = new Schema('photos');
         const videoSchema = new Schema('videos');
         const userData = normalize(camelize(responseData), {
@@ -147,11 +152,11 @@ const fetchUser = () => {
         dispatch(removePosts());
         dispatch(removeLikes());
 
-        // fetch post data for user entities
-        const { posts, photos, videos } = userData.entities;
-        dispatch(fetchPosts(posts, postTypes.TYPE_UPDATE));
-        dispatch(fetchPosts(photos, postTypes.TYPE_PHOTO));
-        dispatch(fetchPosts(videos, postTypes.TYPE_VIDEO));
+        // add posts for user data entities
+        const { updates, photos, videos } = userData.entities;
+        dispatch(addEntities(updates, TYPE_UPDATE));
+        dispatch(addEntities(photos, TYPE_PHOTO));
+        dispatch(addEntities(videos, TYPE_VIDEO));
 
         // define the user object
         const { name, picture, link } = userData.result;
@@ -169,125 +174,151 @@ const fetchUser = () => {
   };
 };
 
-const fetchPosts = (postEntities = {}, postType) => {
-  // fetch meta data for posts entities
-  return dispatch => {
-    return fetchPostsData(postEntities, postType).then(postsData => {
-      // add post likes to the state
-      const { posts, likes } = postsData;
-      dispatch(addLikes(likes));
+const toEntitiesField = postType => {
+  // return the fields string for a post type
+  const { TYPE_UPDATE, TYPE_PHOTO, TYPE_VIDEO } = postTypes;
+  switch (postType) {
+    case TYPE_UPDATE:
+      const updateFields = ['story', 'message', 'picture', 'created_time', 'place', 'link'].join(',');
+      return `posts.limit(${LIMIT_UPDATES_FETCHED}){${updateFields}}`;
+    case TYPE_PHOTO:
+      const photoFields = ['name', 'picture', 'created_time', 'place', 'link'].join(',');
+      return `photos.limit(${LIMIT_PHOTOS_FETCHED}).type(uploaded){${photoFields}}`;
+    case TYPE_VIDEO:
+      const videoFields = ['title', 'picture', 'created_time', 'place', 'permalink_url', 'source'].join(',');
+      return `videos.limit(${LIMIT_VIDEOS_FETCHED}).type(uploaded){${videoFields}}`;
+    default:
+      return '';
+  }
+};
 
-      // add posts to the state
-      return dispatch(addPosts(posts));
-    });
+const addEntities = (entities = {}, postType) => {
+  // add posts and likes for user data entities
+  return dispatch => {
+    // request and add post likes to the state
+    const posts = toPosts(entities, postType);
+    const likeRequests = toLikeRequests(posts);
+    fetchLikes(likeRequests, posts, dispatch);
+
+    // parse and add posts to the state
+    return dispatch(addPosts(posts));
   };
 };
 
-const fetchPostsData = (postsData, postType) => {
+const toPosts = (entities, postType) => {
+  // convert user entities data into posts
+  const posts = {};
+  for (const postId of Object.keys(entities)) {
+    // normalize each post response
+    const post = entities[postId];
+    const { story, message, name, title, link, permalinkUrl, source } = post;
+    post.title = title || story || message || name;
+    const postLink = link || permalinkUrl || source;
+    post.link = toAbsoluteUrl(postLink);
+    post.type = postType;
+
+    // set the created time on the post as a unix timestamp
+    const createdTime = post.createdTime;
+    if (createdTime) {
+      post.createdTime = moment(createdTime).unix();
+    }
+
+    // set the place id on the post
+    const { place } = post;
+    if (place) {
+      post.place = renameId(place, 'placeId');
+    }
+
+    // set the post id and add the post to the collection
+    renameId(post, 'postId');
+    posts[post.postId] = post;
+  }
+  return posts;
+};
+
+const toLikeRequests = (posts = {}) => {
   // log out immediately if there is no user token
-  const localStorage = window.localStorage;
-  const userToken = localStorage.getItem(storageKeys.USER_TOKEN);
+  const userToken = getUserToken();
   if (!userToken) {
     return logOut();
   }
 
-  // set the api fields to fetch based on the post type
-  let fields;
-  const { TYPE_UPDATE, TYPE_PHOTO, TYPE_VIDEO } = postTypes;
-  switch (postType) {
-    case TYPE_UPDATE:
-      fields = ['story', 'message', 'picture', 'created_time', 'place', 'link'];
-      break;
-    case TYPE_PHOTO:
-      fields = ['name', 'picture', 'created_time', 'place', 'link'];
-      break;
-    case TYPE_VIDEO:
-      fields = ['title', 'picture', 'created_time', 'place', 'permalink_url', 'source'];
-      break;
-    default:
-      fields = [];
-  }
-
-  // initialize the post and like requests
-  const postRequests = [];
+  // initialize the like requests
   const likeRequests = [];
-  for (const postId of Object.keys(postsData)) {
-    // initialize a post request
-    const postUrl = `${API_URL}/${postId}?access_token=${userToken}&fields=${fields.join(',')}`;
-    postRequests.push(fetch(postUrl).then(fetchJson));
-
-    // initialize a like request
-    const likeUrl = `${API_URL}/${postId}/likes?access_token=${userToken}&fields=name,picture,link&summary=true`;
-    likeRequests.push(fetch(likeUrl).then(fetchJson).then(like => {
-      // set the post id on the like response
-      like.postId = postId;
-      return like;
-    }));
+  for (const postId of Object.keys(posts)) {
+    // add a like request for each post
+    const likeUrl = `${API_URL}/${postId}/likes?access_token=${userToken}&fields=name,picture,link&summary=true&limit=${LIMIT_LIKES_FETCHED}`;
+    likeRequests.push(toLikeRequest(likeUrl, postId));
   }
+  return likeRequests;
+};
 
-  // parse and add post responses to a collection of post objects
-  const posts = {};
-  return Promise.all(postRequests).then(postResponses => {
-    for (const postResponse of postResponses) {
-      // normalize each post response
-      const post = normalize(camelize(postResponse), {}).result;
-      const { story, message, name, title, link, permalinkUrl, source } = post;
-      post.title = title || story || message || name;
-      const postLink = link || permalinkUrl || source;
-      post.link = toAbsoluteUrl(postLink);
-      post.type = postType;
+const fetchLikes = (likeRequests = [], posts = {}, dispatch) => {
+  // save like responses to a collection of like objects
+  Promise.all(likeRequests).then(likeResponses => {
+    const likes = {};
+    const likeSchema = new Schema('likes');
+    const pagedLikeRequests = [];
+    for (const likeResponse of likeResponses) {
+      // normalize each like response
+      const likeData = normalize(camelize(likeResponse), {
+        data: arrayOf(likeSchema)
+      });
+      const { postId, summary, paging } = likeData.result;
 
-      // set the created time on the post as a unix timestamp
-      const createdTime = post.createdTime;
-      if (createdTime) {
-        post.createdTime = moment(createdTime).unix();
+      // add a paged like request for the post if necessary
+      const pagedLikeRequest = toPagedLikeRequest(paging, postId);
+      if (pagedLikeRequest) {
+        pagedLikeRequests.push(pagedLikeRequest);
       }
 
-      // set the place id on the post
-      const { place } = post;
-      if (place) {
-        post.place = renameId(place, 'placeId');
-      }
+      // set the total like count on the post
+      const post = posts[postId];
+      post.likeCount = summary.totalCount;
+      const postLikes = likeData.entities.likes || {};
 
-      // set the post id and add the post to the collection
-      renameId(post, 'postId');
-      posts[post.postId] = post;
+      // add all post likes to the like collection
+      for (const userId of Object.keys(postLikes)) {
+        const like = postLikes[userId];
+        renameId(like, 'userId');
+        like.postId = postId;
+        like.picture = like.picture.data.url;
+        const likeId = `${postId}:${userId}`;
+        likes[likeId] = like;
+      }
     }
 
-    // save like responses to a collection of like objects
-    const likeSchema = new Schema('likes');
-    return Promise.all(likeRequests).then(likeResponses => {
-      const likes = {};
-      for (const likeResponse of likeResponses) {
-        // normalize each like response
-        const likeData = normalize(camelize(likeResponse), {
-          data: arrayOf(likeSchema)
-        });
-        const { postId, summary } = likeData.result;
-
-        // set the total like count on the post
-        const post = posts[postId];
-        post.likeCount = summary.totalCount;
-        const postLikes = likeData.entities.likes || {};
-
-        // add all post likes to the like collection
-        for (const userId of Object.keys(postLikes)) {
-          const like = postLikes[userId];
-          renameId(like, 'userId');
-          like.postId = postId;
-          like.picture = like.picture.data.url;
-          const likeId = `${postId}:${userId}`;
-          likes[likeId] = like;
-        }
-      }
-
-      // return the post and like collections
-      return {
-        posts,
-        likes
-      };
-    });
+    // add the current like objects to the state then fetch paged like requests if necessary
+    dispatch(addLikes(likes));
+    if (pagedLikeRequests.length) {
+      fetchLikes(pagedLikeRequests, posts, dispatch);
+    }
   });
+};
+
+const toPagedLikeRequest = (paging, postId) => {
+  // return the a request for the next page of likes if necessary
+  if (paging) {
+    const { next } = paging;
+    if (next) {
+      return toLikeRequest(next, postId);
+    }
+  }
+};
+
+const toLikeRequest = (likeUrl, postId) => {
+  // return a like request callback for an url and post id
+  return fetch(likeUrl).then(fetchJson).then(like => {
+    // set the post id on the like response
+    like.postId = postId;
+    return like;
+  });
+};
+
+const getUserToken = () => {
+  // return a user token from local storage
+  const localStorage = window.localStorage;
+  return localStorage.getItem(storageKeys.USER_TOKEN);
 };
 
 const toAbsoluteUrl = url => {

@@ -23,7 +23,6 @@ Here is what you should see:
 
 ## Todo
 
-- [x] Extend the platform to support status posts
 - [x] Replace autoprefixer-loader which is deprecated with postcss-loader
 - [x] Set NODE_ENV = production during build for performance
 - [ ] Remove Immutable.toJS from views for object sharing
@@ -34,7 +33,7 @@ Here is what you should see:
 - [ ] Prerender static html to the template with ReactDOMServer.renderToStaticMarkup for performance and SEO
 - [ ] Catch and handle request errors
 - [ ] Add and co-locate mocha tests with components and modules
-- [ ] Implement pagination for parsing "likes" responses
+- [x] Implement pagination for parsing "likes" responses
 - [ ] Extend the platform to support "shares"
 - [x] Embed Google Ads
 - [ ] Redirect to https for SEO

@@ -48,9 +48,10 @@ module.exports = {
   postTypes,
 
   // export fetch limit constants
-  LIMIT_UPDATES_FETCHED: 100,
-  LIMIT_PHOTOS_FETCHED: 100,
-  LIMIT_VIDEOS_FETCHED: 100,
+  LIMIT_LIKES_FETCHED: 25,
+  LIMIT_UPDATES_FETCHED: 25,
+  LIMIT_PHOTOS_FETCHED: 25,
+  LIMIT_VIDEOS_FETCHED: 25,
 
   // export display limit constants
   LIMIT_USERS_DISPLAYED: 10,

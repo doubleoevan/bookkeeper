@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 // constants
 import { LIMIT_UPDATES_FETCHED, LIMIT_PHOTOS_FETCHED, LIMIT_VIDEOS_FETCHED } from '../app/config';
-const TOOLTIP_DATA = `This data is collected from
+const DATA_TOOLTIP = `This data is collected from
                       your ${LIMIT_UPDATES_FETCHED} most recent updates,
                       your ${LIMIT_PHOTOS_FETCHED} most recent photos,
                       and your ${LIMIT_VIDEOS_FETCHED} most recent videos`.replace(/\s+/g, ' ');
@@ -29,8 +29,9 @@ const tooltipProps = (tooltip = '', place = 'right', classes = 'custom-tooltip',
   };
 };
 
-// export tooltip helper functions
+// export tooltip helper constants and functions
 module.exports = {
+  DATA_TOOLTIP,
   tooltipProps,
-  dataTooltipProps: tooltipProps.bind(this, TOOLTIP_DATA)
+  dataTooltipProps: tooltipProps.bind(this, DATA_TOOLTIP)
 };

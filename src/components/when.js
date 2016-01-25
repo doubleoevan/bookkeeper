@@ -18,12 +18,14 @@ import { RefreshButtonContainer } from './refresh-button';
 // functions
 import { connect } from 'react-redux';
 import * as actions from '../app/actions';
-import { tooltipProps, dataTooltipProps } from '../helpers/tooltip';
+import { tooltipProps, DATA_TOOLTIP } from '../helpers/tooltip';
 import { openModal } from '../helpers/modal';
 
 // constants
 import { LIMIT_MONTHS_DISPLAYED } from '../app/config';
 const MINIMUM_LIKES_INTERVAL = 10;
+const MONTH_DATA_TOOLTIP = `${DATA_TOOLTIP} within the last ${LIMIT_MONTHS_DISPLAYED} months`;
+
 
 /**
  * When shows the likes trended over time view.
@@ -288,7 +290,7 @@ export const When = React.createClass({
         <div>
           {/* title */}
           <div className="row">
-            <h5 {...dataTooltipProps()} className="chart-title col">
+            <h5 {...tooltipProps(MONTH_DATA_TOOLTIP, 'right')} className="chart-title col">
               Here are your most recent like counts.
             </h5>
 
