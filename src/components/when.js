@@ -73,7 +73,7 @@ export const When = React.createClass({
     // update the width of the chart to render
     const chart = ReactDOM.findDOMNode(this.refs.chart);
     if (chart) {
-      const chartWidth = chart.offsetWidth;
+      const chartWidth = chart.offsetWidth || chart.clientWidth;
       this.setState({
         chartWidth
       });
@@ -207,7 +207,7 @@ export const When = React.createClass({
   render() {
     // set the chart dimensions
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const { chartWidth } = this.state;
+    const { chartWidth = 0 } = this.state;
     const { chartHeight } = this.props;
     const xAxisHeight = 25;
     const yAxisWidth = 45;
@@ -391,13 +391,15 @@ export const When = React.createClass({
                     const selectDay = this.selectDay.bind(this, day);
 
                     // show the day like count vertex
+                    const circleLeft = scaleWidth(day);
+                    const circleHeight = scaleHeight(dayLikeCount);
                     return (
                         <circle {...tooltipProps(`Click to see your ${dayLikeCount} likes on ${dayDisplay}`, 'top')}
                             className="vertex"
                             key={day}
                             onClick={selectDay}
-                            cx={scaleWidth(day)}
-                            cy={scaleHeight(dayLikeCount)}
+                            cx={circleLeft}
+                            cy={circleHeight}
                             r="5">
                         </circle>
                     );
