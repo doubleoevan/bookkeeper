@@ -42,7 +42,12 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        {from: 'src/static'}
+        {
+          from: 'src/static',
+          globOptions: {
+            ignore: ['**/*.d.ts']
+          }
+        }
       ]
     }),
     new WebpackBundleAnalyzer.BundleAnalyzerPlugin()
