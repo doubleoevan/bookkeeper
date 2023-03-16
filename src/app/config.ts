@@ -6,7 +6,7 @@ type EnvironmentConfig = {
 };
 
 // environment specific configuration constants
-const environment: string = process.env.NODE_ENV || 'development';
+const environment: string = process.env.NODE_ENV ?? 'development';
 const environmentConfig: EnvironmentConfig = {
     // dev configuration constants
     development: {
@@ -20,7 +20,7 @@ const environmentConfig: EnvironmentConfig = {
         fbApiDomain: 'facebook-api'
     }
 };
-const config = environmentConfig[environment] || {};
+const config = environmentConfig[environment] ?? {};
 
 /**
  * The app configuration constants

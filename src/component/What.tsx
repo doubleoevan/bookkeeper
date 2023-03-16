@@ -108,7 +108,7 @@ export default function What(): JSX.Element {
         const label = dayjs.unix(post.createdTime).format('MMM D YYYY');
         labels.push(label);
         for (const reactionType of ReactionType) {
-            const reactionCount = post.reactions.find((reaction: PostReaction) => reaction.type === reactionType.type)?.count || 0;
+            const reactionCount = post.reactions.find((reaction: PostReaction) => reaction.type === reactionType.type)?.count ?? 0;
             reactionDatasets[reactionType.type].data.push(reactionCount);
         }
     });

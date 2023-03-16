@@ -103,8 +103,8 @@ export default class FacebookPlatformService implements PlatformService {
                 id,
                 message,
                 story,
-                picture: picture || full_picture,
-                link: link || permalink_url,
+                picture: picture ?? full_picture,
+                link: link ?? permalink_url,
                 createdTime: dayjs(created_time).unix(),
                 placeId: place?.id,
                 placeName: place?.name,
@@ -113,7 +113,7 @@ export default class FacebookPlatformService implements PlatformService {
                 reactions: [],
                 platform
             };
-        }) || [];
+        }) ?? [];
         return posts;
     }
 

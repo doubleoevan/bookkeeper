@@ -31,7 +31,7 @@ export interface PostReactionsProps {
 export default function PostReactions({post}: PostReactionsProps): JSX.Element {
     const isDarkMode = useAppSelector(selectIsDarkMode);
     const {picture, message, link, createdTime, platform, reactions} = post;
-    const title = message || dayjs.unix(createdTime).format('MMM D YYYY');
+    const title = message ?? dayjs.unix(createdTime).format('MMM D YYYY');
     const theme = useTheme();
 
     return (

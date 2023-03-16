@@ -62,7 +62,7 @@ export default function PlacePosts({posts}: PlacePostsProps): JSX.Element {
             >
                 <>
                     {posts.map(({picture, message, link, createdTime, platform}: Post, index: number) => {
-                        const title = message || dayjs.unix(createdTime).format('MMM D YYYY');
+                        const title = message ?? dayjs.unix(createdTime).format('MMM D YYYY');
                         return (
                             <ListItem
                                 sx={styles.post}

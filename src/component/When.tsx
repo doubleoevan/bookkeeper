@@ -104,7 +104,7 @@ export default function When(): JSX.Element {
     Array.from(reactionTypes).forEach((reactionType: ReactionType) => {
         const data: Array<number> = [];
         recentPosts.forEach((post: Post) => {
-            const reactionCount = post.reactions.find((reaction: PostReaction) => reaction.type === reactionType.type)?.count || 0;
+            const reactionCount = post.reactions.find((reaction: PostReaction) => reaction.type === reactionType.type)?.count ?? 0;
             data.push(reactionCount);
         });
         const {borderColor, backgroundColor} = reactionType;

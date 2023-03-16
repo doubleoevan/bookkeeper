@@ -63,7 +63,7 @@ export default function ReactionPosts({reaction, posts}: ReactionPostsProps): JS
             >
                 <>
                     {posts.map(({picture, message, link, createdTime, platform}: Post, index: number) => {
-                        const title = message || dayjs.unix(createdTime).format('MMM D YYYY');
+                        const title = message ?? dayjs.unix(createdTime).format('MMM D YYYY');
                         return (
                             <ListItem
                                 sx={styles.post}

@@ -86,7 +86,7 @@ export default function How(): JSX.Element {
         reactions.forEach((reaction: PostReaction) => {
             const {type, count} = reaction;
             const reactionCountId = `${type}`;
-            const reactionCountPosts = reactionCountPostsMap[reactionCountId] || {type, count: 0, posts: []};
+            const reactionCountPosts = reactionCountPostsMap[reactionCountId] ?? {type, count: 0, posts: []};
             reactionCountPosts.count += count;
             reactionCountPosts.posts.push(post);
             reactionCountPostsMap[reactionCountId] = reactionCountPosts;
