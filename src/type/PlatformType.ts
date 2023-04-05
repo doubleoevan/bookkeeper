@@ -14,7 +14,7 @@ import BaseType from 'type/BaseType';
 /**
  * The platform types enumeration
  */
-export default class PlatformType extends BaseType<PlatformType> {
+export default class PlatformType extends BaseType<PlatformType>() {
     public static readonly Facebook = new PlatformType({
         icon: FacebookIcon,
         limitPosts: LIMIT_POSTS_FACEBOOK,

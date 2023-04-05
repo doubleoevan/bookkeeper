@@ -35,7 +35,7 @@ export const fetchUser = createAsyncThunk<User, string, {
     async (platform: string, {rejectWithValue}) => {
         try {
             const platformType = PlatformType.fromType(platform);
-            const user = await platformType.service?.getUser();
+            const user = await platformType!.service?.getUser();
             return user as User;
         } catch (error) {
             return rejectWithValue(platform);
@@ -54,7 +54,7 @@ export const fetchPosts = createAsyncThunk<Array<Post>, string, {
         try {
             const user = platformState.users[platform];
             const platformType = PlatformType.fromType(platform);
-            const posts = await platformType.service?.getPosts(user.id);
+            const posts = await platformType!.service?.getPosts(user.id);
             return posts as Array<Post>;
         } catch (error) {
             return rejectWithValue(platform);
@@ -73,7 +73,7 @@ export const fetchReactions = createAsyncThunk<PlatformReactions, string, {
         try {
             const posts = Object.values(platformState.posts).filter((post: Post) => post.platform === platform);
             const platformType = PlatformType.fromType(platform);
-            const reactions = await platformType.service?.getReactions(posts);
+            const reactions = await platformType!.service?.getReactions(posts);
             return {platform, reactions} as PlatformReactions;
         } catch (error) {
             return rejectWithValue(platform);
@@ -85,7 +85,7 @@ const removeUserToken = (state: PlatformState, action: PayloadAction<string | un
     // remove the user token for a failed request
     const platform = action.payload!;
     const platformType = PlatformType.fromType(platform);
-    platformType.service?.removeUserToken();
+    platformType!.service?.removeUserToken();
 }
 
 const toPlatformPostId = (platform: string, postId: string) => `${platform}:${postId}`;
@@ -104,7 +104,7 @@ export const platformSlice = createSlice({
             //  remove the user and their posts
             const user = action.payload;
             const platformType = PlatformType.fromType(user.platform);
-            platformType.service?.removeUserToken();
+            platformType!.service?.removeUserToken();
             delete state.users[user.platform];
             Object.entries(state.posts).forEach(([key, post]: [key: string, post: Post]) => {
                 if (post.platform === user.platform) {

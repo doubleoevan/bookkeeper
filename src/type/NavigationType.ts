@@ -11,7 +11,7 @@ import BaseType from 'type/BaseType';
 /**
  * The navigation types enumeration
  */
-export default class NavigationType extends BaseType<NavigationType> {
+export default class NavigationType extends BaseType<NavigationType>() {
     public static readonly How = new NavigationType({
         label: 'How?',
         href: '/how',

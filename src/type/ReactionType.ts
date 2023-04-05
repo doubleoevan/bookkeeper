@@ -15,7 +15,7 @@ export type Reaction = 'Like' | 'Love' | 'Care' | 'Wow' | 'Haha' | 'Sad' | 'Angr
 /**
  * The reaction types enumeration
  */
-export default class ReactionType extends BaseType<ReactionType> {
+export default class ReactionType extends BaseType<ReactionType>() {
     public static readonly Like = new ReactionType({
         icon: LikeReactionIcon,
         borderColor: 'rgba(54, 162, 235, 1)',

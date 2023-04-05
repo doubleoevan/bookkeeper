@@ -33,9 +33,9 @@ export default function RefreshButton(): JSX.Element {
     async function onRefresh() {
         // fetch posts and reactions for each logged in platform user
         Object.values(users).forEach(async (user: User) => {
-            const platformType: PlatformType = PlatformType.fromType(user.platform);
+            const platformType = PlatformType.fromType(user.platform);
             try {
-                const platform = platformType.type;
+                const platform = platformType!.type;
                 await dispatch(fetchPosts(platform));
                 await dispatch(fetchReactions(platform));
             } catch (error: any) {
