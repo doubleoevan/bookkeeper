@@ -5,10 +5,10 @@ export default function BaseType<T>() {
     abstract class BaseType {
         public static fromType(type: string): T | never {
             const baseType = this.enumeration.get(type);
-            if (baseType) {
-                return baseType
+            if (!baseType) {
+                throw new Error(`Error: unsupported type: ${type}`);
             }
-            throw new Error(`Error: unsupported type: ${type}`)
+            return baseType;
         }
 
         public static [Symbol.iterator]() {
