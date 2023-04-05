@@ -103,13 +103,13 @@ export default function How(): JSX.Element {
     Object.values(reactionCountPostsMap).forEach((reactionCountPosts: ReactionCountPosts) => {
         const {type, count, posts} = reactionCountPosts;
         const reactionType = ReactionType.fromType(type);
-        const {borderColor, backgroundColor} = reactionType!;
+        const {borderColor, backgroundColor} = reactionType;
         data.push(count);
         labels.push(type);
         tooltips.push(`${count} ${type} reactions to your ${posts.length} posts`)
         borderColors.push(borderColor);
         backgroundColors.push(backgroundColor);
-        reactionTypes.push(reactionType!);
+        reactionTypes.push(reactionType);
     });
     const datasets: Array<ChartDataset> = [{
         data,

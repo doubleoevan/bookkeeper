@@ -87,7 +87,7 @@ export default function PostReactions({post}: PostReactionsProps): JSX.Element {
                 <>
                     {reactions.map((reaction: PostReaction, index: number) => {
                         const reactionType = ReactionType.fromType(reaction.type);
-                        const {type, icon: Icon, borderColor} = reactionType!;
+                        const {type, icon: Icon, borderColor} = reactionType;
                         return (
                             <ListItem
                                 sx={styles.reactionItem}

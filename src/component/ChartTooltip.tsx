@@ -19,7 +19,7 @@ export default function ChartTooltip(): JSX.Element {
     const dataMessages: Array<string> = [];
     Object.values(users).forEach((user: User) => {
         const platformType = PlatformType.fromType(user.platform);
-        dataMessages.push(`your last ${platformType!.limitPosts} ${user.platform} posts`);
+        dataMessages.push(`your last ${platformType.limitPosts} ${user.platform} posts`);
     });
     const title = `Click on the legend and the chart to interact. Data is derived from ${dataMessages.join(' and ')}.`;
 

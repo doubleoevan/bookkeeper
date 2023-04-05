@@ -3,8 +3,12 @@
  */
 export default function BaseType<T>() {
     abstract class BaseType {
-        public static fromType(type: string): T | undefined {
-            return this.enumeration.get(type);
+        public static fromType(type: string): T | never {
+            const baseType = this.enumeration.get(type);
+            if (baseType) {
+                return baseType
+            }
+            throw new Error(`Error: unsupported type: ${type}`)
         }
 
         public static [Symbol.iterator]() {

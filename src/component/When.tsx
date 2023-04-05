@@ -97,7 +97,7 @@ export default function When(): JSX.Element {
         labels.push(dayjs.unix(post.createdTime).format('MMM D YYYY'));
         post.reactions.forEach((reaction: PostReaction) => {
             const reactionType = ReactionType.fromType(reaction.type);
-            reactionTypes.add(reactionType!);
+            reactionTypes.add(reactionType);
         })
     });
     const datasets: Array<ReactionDataset> = [];
