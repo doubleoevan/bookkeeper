@@ -8,11 +8,13 @@ export default function BaseType<T>() {
         }
 
         public static [Symbol.iterator]() {
-            return [...this.enumeration.values()][Symbol.iterator]();
+            const types = [...this.enumeration.values()];
+            return types[Symbol.iterator]();
         }
 
         public static map(callback: (item: T, index: number) => any) {
-            return [...this.enumeration.values()].map(callback);
+            const types = [...this.enumeration.values()];
+            return types.map(callback);
         }
 
         protected static enumeration: Map<string, T>;
