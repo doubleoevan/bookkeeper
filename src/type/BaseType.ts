@@ -4,25 +4,24 @@
 export default function BaseType<T>() {
     abstract class BaseType {
         public static fromType(type: string): T | undefined {
-            // @ts-ignore
-            return this.enumeration.find((enumType: T) => enumType.type === type);
+            return this.enumeration.get(type);
         }
 
         public static [Symbol.iterator]() {
-            return this.enumeration[Symbol.iterator]();
+            return [...this.enumeration.values()][Symbol.iterator]();
         }
 
         public static map(callback: (item: T, index: number) => any) {
-            return this.enumeration.map(callback);
+            return [...this.enumeration.values()].map(callback);
         }
 
-        protected static enumeration: T[];
+        protected static enumeration: Map<string, T>;
 
-        protected static toEnumeration(): T[] {
-            const enumeration = [];
+        protected static toEnumeration(): Map<string, T> {
+            const enumeration = new Map<string, T>();
             for (const [key, value] of Object.entries(this)) {
                 value.type = key;
-                enumeration.push(value);
+                enumeration.set(key, value as T);
             }
             return this.enumeration = enumeration;
         }
