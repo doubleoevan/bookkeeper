@@ -28,8 +28,6 @@ export default function PlacePostsMap({posts, onPlaceClick}: PlacePostsMapProps)
         });
 
     // return a map with post location marker clusters
-    // @ts-ignore
-    // @ts-ignore
     return (
         <GoogleMap
             mapContainerStyle={{width: '100%', height: '100%'}}
@@ -43,6 +41,7 @@ export default function PlacePostsMap({posts, onPlaceClick}: PlacePostsMapProps)
                         const {placeName, latitude, longitude} = posts[0];
                         const markerTitle = `Click to see reactions to your ${posts.length} posts at ${placeName}`;
                         return (
+                            // @ts-expect-error No overload matches this call
                             <Marker
                                 title={markerTitle}
                                 key={placeId}
