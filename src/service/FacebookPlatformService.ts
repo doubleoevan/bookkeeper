@@ -62,6 +62,10 @@ export default class FacebookPlatformService implements PlatformService {
         return this.instance;
     }
 
+    private constructor() {
+        // private constructor to keep this class a singleton
+    }
+
     public setUserToken = (token: string): void => {
         return window?.localStorage?.setItem(storageKeys.FB_USER_TOKEN, token);
     }

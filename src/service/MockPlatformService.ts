@@ -15,7 +15,7 @@ export default class MockPlatformService implements PlatformService {
         return this.instances[platform];
     }
 
-    constructor(platform: string) {
+    private constructor(platform: string) {
         this.platform = platform;
         this.userToken = `:mock-${this.platform}-user-token`;
     }
