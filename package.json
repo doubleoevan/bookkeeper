@@ -1,10 +1,11 @@
 {
   "name": "bookkeeper",
+  "private": true,
   "scripts": {
-    "dev": "webpack serve",
+    "start": "webpack serve",
     "build": "webpack --mode production --progress",
     "test": "jest",
-    "tscheck": "tsc"
+    "type": "tsc"
   },
   "packageManager": "yarn@3.3.1",
   "dependencies": {
