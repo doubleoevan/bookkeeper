@@ -17,7 +17,7 @@ cd bookkeeper
 yarn 
 
 # deploy the app and launch the webpack-dev-server on https://localhost:8080
-yarn dev 
+yarn start 
 ```
 
 ## Usage
